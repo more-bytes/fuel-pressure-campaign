@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fuel Pressure Campaign</title>
+  <meta name="description" content="Stop topping off. Start pushing back. Buy less. Burn less. Pay less." />
+
+  <style>
+    :root {
+      --bg: #09090b;
+      --panel: #18181b;
+      --panel-dark: #111113;
+      --text: #f4f4f5;
+      --muted: #d4d4d8;
+      --soft: #a1a1aa;
+      --yellow: #facc15;
+      --purple: #7e22ce;
+      --border: #3f3f46;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 72px 24px;
+      background:
+        radial-gradient(circle at top left, rgba(250, 204, 21, .22), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(126, 34, 206, .28), transparent 35%),
+        var(--bg);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      border: 1px solid rgba(250, 204, 21, .45);
+      background: rgba(250, 204, 21, .12);
+      color: #fde68a;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(48px, 8vw, 84px);
+      line-height: .94;
+      letter-spacing: -3px;
+      font-weight: 900;
+    }
+
+    .yellow {
+      color: var(--yellow);
+    }
+
+    .tagline {
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 800;
+      margin: 28px 0 0;
+    }
+
+    .lede {
+      max-width: 720px;
+      font-size: 19px;
+      color: var(--muted);
+      margin-top: 24px;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 15px 22px;
+      border-radius: 16px;
+      font-weight: 800;
+      text-decoration: none;
+      border: 1px solid transparent;
+    }
+
+    .button-primary {
+      background: var(--yellow);
+      color: #111;
+    }
+
+    .button-secondary {
+      border-color: var(--border);
+      background: transparent;
+      color: var(--text);
+    }
+
+    .card {
+      background: rgba(24, 24, 27, .9);
+      border: 1px solid #27272a;
+      border-radius: 28px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, .35);
+    }
+
+    .card-content {
+      padding: 30px;
+    }
+
+    .qr-box {
+      aspect-ratio: 1 / 1;
+      border: 2px dashed #52525b;
+      border-radius: 24px;
+      background: #09090b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--soft);
+      padding: 20px;
+    }
+
+    .qr-icon {
+      font-size: 72px;
+      margin-bottom: 12px;
+    }
+
+    section {
+      padding: 62px 24px;
+    }
+
+    section.alt {
+      background: rgba(24, 24, 27, .58);
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(32px, 4vw, 44px);
+      line-height: 1.05;
+      letter-spacing: -1px;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 32px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .icon {
+      color: var(--yellow);
+      font-size: 34px;
+      margin-bottom: 16px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .soft {
+      color: var(--soft);
+      font-size: 14px;
+    }
+
+    .pledge-list {
+      list-style: none;
+      padding: 0;
+      margin: 22px 0 0;
+    }
+
+    .pledge-list li {
+      margin-bottom: 14px;
+      display: flex;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .check {
+      color: var(--yellow);
+      font-weight: 900;
+    }
+
+    .impact-card {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 18px;
+      align-items: end;
+      background: var(--panel);
+      border: 1px solid #27272a;
+      border-radius: 28px;
+      padding: 28px;
+    }
+
+    label span {
+      display: block;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid #52525b;
+      background: #09090b;
+      color: var(--text);
+      padding: 14px 15px;
+      font-size: 18px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--yellow);
+    }
+
+    .impact-result {
+      background: var(--yellow);
+      color: #111;
+      border-radius: 22px;
+      padding: 20px;
+    }
+
+    .impact-result .label {
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .impact-result .number {
+      font-size: 42px;
+      font-weight: 900;
+      line-height: 1;
+      margin-top: 10px;
+    }
+
+    .sticker-text {
+      margin-top: 18px;
+      background: var(--panel);
+      border-radius: 20px;
+      padding: 24px;
+      color: var(--yellow);
+      font-size: 28px;
+      line-height: 1.1;
+      font-weight: 900;
+    }
+
+    .sticker-text span {
+      display: block;
+      color: var(--text);
+      font-size: 19px;
+      margin-top: 12px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 42px 24px;
+      color: #71717a;
+      font-size: 14px;
+    }
+
+    @media (max-width: 850px) {
+      .hero-grid,
+      .grid-2,
+      .grid-3,
+      .impact-card {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="badge">⛽ 30-Day Fuel Pressure Campaign</div>
+
+        <h1>
+          STOP TOPPING OFF.
+          <span class="yellow">START PUSHING BACK.</span>
+        </h1>
+
+        <p class="tagline">Buy less. Burn less. Pay less.</p>
+
+        <p class="lede">
+          Fuel companies count on us buying early, filling up fully, and absorbing the cost alone.
+          For 30 days, we act together: buy only what we need, burn less when we can,
+          and reduce demand from the grassroots up.
+        </p>
+
+        <div class="button-row">
+          <a class="button button-primary" href="#pledge">Join the 30-Day Challenge</a>
+          <a class="button button-secondary" href="#share">Share the Message</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-content">
+          <h3 class="yellow">Scan. Join. Share.</h3>
+
+          <div class="qr-box" style="margin-top: 18px;">
+            <div>
+              <div class="qr-icon">▦</div>
+              <strong>Place QR code here</strong>
+              <p class="soft">Link to this campaign page</p>
+            </div>
+          </div>
+
+          <p class="soft" style="margin-top: 18px;">
+            Print this QR code on stickers, flyers, handouts, car-window signs,
+            and community boards where posting is allowed.
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <h2>The 3-Step Action</h2>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-content">
+            <div class="icon">⛽</div>
+            <h3>Don’t Top Off</h3>
+            <p class="muted">
+              Wait longer before refueling when safe. Avoid buying early just to keep the tank full.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-content">
+            <div class="icon">📉</div>
+            <h3>Buy What You Need</h3>
+            <p class="muted">
+              Keep less extra fuel sitting unused in your tank. Don’t store their profits for them.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-content">
+            <div class="icon">🔥</div>
+            <h3>Burn Less When You Can</h3>
+            <p class="muted">
+              Combine trips, reduce idling, carpool once, slow down, or skip one unnecessary drive.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="container grid-2">
+      <div>
+        <h2>Why This Matters</h2>
+
+        <p class="lede">
+          Every extra gallon sitting in millions of tanks has already been paid for.
+          When we stop storing excess fuel in our tanks and reduce how much we burn,
+          we create demand pressure together.
+        </p>
+
+        <p class="lede">
+          This is not about blaming working people who have to drive.
+          This is about coordinated action: small changes, repeated by many people,
+          becoming visible pressure.
+        </p>
+      </div>
+
+      <div class="card" id="pledge">
+        <div class="card-content">
+          <h3 class="yellow">30-Day Pledge</h3>
+
+          <ul class="pledge-list">
+            <li><span class="check">✓</span> I will stop topping off when I don’t need to.</li>
+            <li><span class="check">✓</span> I will buy only what I need.</li>
+            <li><span class="check">✓</span> I will reduce one unnecessary fuel-burning trip each week.</li>
+            <li><span class="check">✓</span> I will share the campaign with five people.</li>
+          </ul>
+
+          <a class="button button-primary" href="#share" style="margin-top: 18px;">
+            Take the Pledge
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Estimate Your Collective Impact</h2>
+
+      <p class="lede">
+        The power is not one person doing everything. The power is many people doing something clear, together.
+      </p>
+
+      <div class="impact-card">
+        <label>
+          <span>Gallons reduced per person</span>
+          <input id="gallons" type="number" min="0" value="2" />
+        </label>
+
+        <label>
+          <span>Number of people participating</span>
+          <input id="people" type="number" min="1" value="1000" />
+        </label>
+
+        <div class="impact-result">
+          <div class="label">Estimated gallons held back/reduced</div>
+          <div class="number" id="impact">2,000</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="share">
+    <div class="container">
+      <h2>Share the Message</h2>
+
+      <div class="grid-2" style="margin-top: 30px;">
+        <div class="card">
+          <div class="card-content">
+            <h3>Sticker Text</h3>
+            <div class="sticker-text">
+              STOP TOPPING OFF.<br />
+              START PUSHING BACK.
+              <span>Buy less. Burn less. Pay less.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-content">
+            <h3>Social Caption</h3>
+            <p class="muted">
+              For 30 days, stop topping off, buy only what you need, and burn less when you can.
+              Small changes, coordinated at scale, become pressure.
+            </p>
+            <p class="yellow" style="font-weight: 800;">
+              #StopToppingOff #StartPushingBack #FuelPressureCampaign
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>30-Day Fuel Pressure Campaign · Buy less. Burn less. Pay less.</p>
+    <p>Post materials only where permitted. Keep the campaign lawful, safe, and focused.</p>
+  </footer>
+
+  <script>
+    const gallonsInput = document.getElementById("gallons");
+    const peopleInput = document.getElementById("people");
+    const impactOutput = document.getElementById("impact");
+
+    function updateImpact() {
+      const gallons = Number(gallonsInput.value) || 0;
+      const people = Number(peopleInput.value) || 0;
+      const impact = gallons * people;
+      impactOutput.textContent = impact.toLocaleString();
+    }
+
+    gallonsInput.addEventListener("input", updateImpact);
+    peopleInput.addEventListener("input", updateImpact);
+    updateImpact();
+  </script>
+</body>
+</html>
