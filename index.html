@@ -132,22 +132,13 @@
       padding: 30px;
     }
 
-    .qr-box {
-      aspect-ratio: 1 / 1;
-      border: 2px dashed #52525b;
+    .qr-image {
+      width: 100%;
       border-radius: 24px;
-      background: #09090b;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: var(--soft);
-      padding: 20px;
-    }
-
-    .qr-icon {
-      font-size: 72px;
-      margin-bottom: 12px;
+      display: block;
+      margin-top: 18px;
+      border: 1px solid rgba(250, 204, 21, .25);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, .45);
     }
 
     section {
@@ -343,13 +334,11 @@
         <div class="card-content">
           <h3 class="yellow">Scan. Join. Share.</h3>
 
-          <div class="qr-box" style="margin-top: 18px;">
-            <div>
-              <div class="qr-icon">▦</div>
-              <strong>Place QR code here</strong>
-              <p class="soft">Link to this campaign page</p>
-            </div>
-          </div>
+          <img
+            class="qr-image"
+            src="Stop%20Topping%20Off%20Start%20Pushing%20Back.png"
+            alt="QR code for Fuel Pressure Campaign"
+          />
 
           <p class="soft" style="margin-top: 18px;">
             Print this QR code on stickers, flyers, handouts, car-window signs,
