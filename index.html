@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Fuel Pressure Campaign</title>
   <meta name="description" content="Stop topping off. Start pushing back. Buy less. Burn less. Pay less." />
 
@@ -108,6 +109,7 @@
       font-weight: 800;
       text-decoration: none;
       border: 1px solid transparent;
+      cursor: pointer;
     }
 
     .button-primary {
@@ -119,6 +121,11 @@
       border-color: var(--border);
       background: transparent;
       color: var(--text);
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      transition: .15s ease;
     }
 
     .card {
@@ -325,8 +332,18 @@
         </p>
 
         <div class="button-row">
-          <a class="button button-primary" href="#pledge">Join the 30-Day Challenge</a>
-          <a class="button button-secondary" href="#share">Share the Message</a>
+          <a
+            class="button button-primary"
+            href="https://forms.gle/grQUx6TGZiVoZrzt7"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Join the 30-Day Challenge
+          </a>
+
+          <a class="button button-secondary" href="#share">
+            Share the Message
+          </a>
         </div>
       </div>
 
@@ -337,12 +354,12 @@
           <img
             class="qr-image"
             src="Stop%20Topping%20Off%20Start%20Pushing%20Back.png"
-            alt="QR code for Fuel Pressure Campaign"
+            alt="QR code for the Fuel Pressure Campaign"
           />
 
           <p class="soft" style="margin-top: 18px;">
-            Print this QR code on stickers, flyers, handouts, car-window signs,
-            and community boards where posting is allowed.
+            Scan the QR code or visit fuelpressurecampaign.org to join the 30-Day Fuel Pressure Campaign.
+            Print and share campaign materials only where permitted.
           </p>
         </div>
       </div>
@@ -416,7 +433,13 @@
             <li><span class="check">✓</span> I will share the campaign with five people.</li>
           </ul>
 
-          <a class="button button-primary" href="#share" style="margin-top: 18px;">
+          <a
+            class="button button-primary"
+            href="https://forms.gle/grQUx6TGZiVoZrzt7"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="margin-top: 18px;"
+          >
             Take the Pledge
           </a>
         </div>
@@ -479,6 +502,17 @@
             </p>
           </div>
         </div>
+      </div>
+
+      <div class="button-row">
+        <a
+          class="button button-primary"
+          href="https://forms.gle/grQUx6TGZiVoZrzt7"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Join the Campaign
+        </a>
       </div>
     </div>
   </section>
