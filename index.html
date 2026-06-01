@@ -290,6 +290,78 @@
       margin-top: 12px;
     }
 
+    .share-card {
+      position: relative;
+      margin-top: 18px;
+      background:
+        radial-gradient(circle at top right, rgba(250, 204, 21, .16), transparent 35%),
+        var(--panel);
+      border: 1px solid rgba(250, 204, 21, .22);
+      border-radius: 20px;
+      padding: 24px;
+      min-height: 260px;
+      overflow: hidden;
+    }
+
+    .share-card-qr {
+      float: right;
+      width: 96px;
+      height: 96px;
+      object-fit: contain;
+      border-radius: 14px;
+      margin: 0 0 14px 18px;
+      border: 1px solid rgba(250, 204, 21, .45);
+      background: var(--yellow);
+    }
+
+    .share-card p {
+      color: var(--muted);
+      font-size: 17px;
+      margin-top: 0;
+    }
+
+    .share-card .share-hashtags {
+      color: var(--yellow);
+      font-weight: 800;
+      margin-top: 16px;
+    }
+
+    .social-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .social-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      background: #09090b;
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .social-button:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
+    }
+
+    .copy-status {
+      margin-top: 10px;
+      color: var(--yellow);
+      font-size: 14px;
+      font-weight: 700;
+      min-height: 20px;
+    }
+
     footer {
       text-align: center;
       padding: 42px 24px;
@@ -307,6 +379,11 @@
 
       h1 {
         letter-spacing: -2px;
+      }
+
+      .share-card-qr {
+        width: 82px;
+        height: 82px;
       }
     }
   </style>
@@ -493,13 +570,38 @@
         <div class="card">
           <div class="card-content">
             <h3>Social Caption</h3>
-            <p class="muted">
-              For 30 days, stop topping off, buy only what you need, and burn less when you can.
-              Small changes, coordinated at scale, become pressure.
-            </p>
-            <p class="yellow" style="font-weight: 800;">
-              #StopToppingOff #StartPushingBack #FuelPressureCampaign
-            </p>
+
+            <div class="share-card" id="socialShareCard">
+              <img
+                class="share-card-qr"
+                src="Fuel%20Pressure%20Campaign%20QR%20Code%20small.png"
+                alt="QR code for fuelpressurecampaign.org"
+              />
+
+              <p id="socialCaptionText">
+                Gas prices only feel untouchable because we act alone.
+                For 30 days, join the Fuel Pressure Campaign:
+                stop topping off, buy only what you need, and burn less when you can.
+                This campaign does not ask anyone to run out of gas or drive unsafely.
+                It is about coordinated grassroots pressure.
+                Take the pledge and send it to five people:
+                fuelpressurecampaign.org
+              </p>
+
+              <p class="share-hashtags" id="socialHashtags">
+                #StopToppingOff #StartPushingBack #FuelPressureCampaign #BuyLessBurnLess #CostOfLiving
+              </p>
+            </div>
+
+            <div class="social-buttons">
+              <button class="social-button" type="button" onclick="copySocialCaption()">📋 Copy caption</button>
+              <button class="social-button" type="button" onclick="shareCampaign()">📲 Share</button>
+              <a class="social-button" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a class="social-button" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffuelpressurecampaign.org" target="_blank" rel="noopener noreferrer">Facebook</a>
+              <a class="social-button" href="https://twitter.com/intent/tweet?text=Stop%20topping%20off.%20Start%20pushing%20back.%20Buy%20less.%20Burn%20less.%20Pay%20less.%20Join%20the%2030-Day%20Fuel%20Pressure%20Campaign%3A%20https%3A%2F%2Ffuelpressurecampaign.org%20%23StopToppingOff%20%23FuelPressureCampaign" target="_blank" rel="noopener noreferrer">X/Twitter</a>
+            </div>
+
+            <div class="copy-status" id="copyStatus"></div>
           </div>
         </div>
       </div>
@@ -537,6 +639,36 @@
     gallonsInput.addEventListener("input", updateImpact);
     peopleInput.addEventListener("input", updateImpact);
     updateImpact();
+
+    const campaignShareText =
+      "Gas prices only feel untouchable because we act alone.\n\n" +
+      "For 30 days, join the Fuel Pressure Campaign:\n" +
+      "Stop topping off. Buy only what you need. Burn less when you can.\n\n" +
+      "This campaign does not ask anyone to run out of gas or drive unsafely. " +
+      "It is about coordinated grassroots pressure.\n\n" +
+      "Take the pledge and send it to five people:\n" +
+      "https://fuelpressurecampaign.org\n\n" +
+      "#StopToppingOff #StartPushingBack #FuelPressureCampaign #BuyLessBurnLess #CostOfLiving";
+
+    function copySocialCaption() {
+      navigator.clipboard.writeText(campaignShareText).then(() => {
+        document.getElementById("copyStatus").textContent = "Caption copied. Paste it into your post or story.";
+      }).catch(() => {
+        document.getElementById("copyStatus").textContent = "Copy failed. You can manually highlight and copy the caption.";
+      });
+    }
+
+    function shareCampaign() {
+      if (navigator.share) {
+        navigator.share({
+          title: "Fuel Pressure Campaign",
+          text: campaignShareText,
+          url: "https://fuelpressurecampaign.org"
+        }).catch(() => {});
+      } else {
+        copySocialCaption();
+      }
+    }
   </script>
 </body>
 </html>
